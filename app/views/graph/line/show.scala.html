@@ -1,0 +1,96 @@
+@() 
+@main("Grphe Line") {
+<script type="text/javascript">
+	function showStatus(data, textStatus){
+		$("#data")
+			.empty()
+			.append(
+					$("<pre'>status:" + textStatus + "</pre><br/>")
+				)
+			.append(
+					$("<pre'>min:" + data["min"] + "</pre><br/>")
+				)
+			.append(
+					$("<pre'>max:" + data["max"] + "</pre><br/>")
+				)
+			.append(
+					$("<pre'>a:" + data["a"] + "</pre><br/>")
+				)
+			.append(
+					$("<pre style='width:300pt;'>data:" + data["data"] + "</pre><br/>")
+				);
+	}
+
+	function write(url){
+		$.getJSON(url,
+				function(data, textStatus, XMLHttpRequest) {
+					showStatus(data, textStatus);
+					$("#graph").empty();
+					$.jqplot("graph"
+							,data["data"]
+							,{
+								title:"Liner Equation"
+								,series:[{showMarker:false}]
+								,axes: {
+									xaxis: {
+										label: "X Axis"
+										,pad:0
+									}
+									,yaxis: {
+										label: "y Axis"
+										,pad:0
+									}
+								}
+							}
+					);
+		});
+	}
+
+	function liner(min, max, a){
+		min = $("#min").val();
+		max = $("#max").val();
+		a = $("#a").val();
+		write("/graph/liner/" + min + "/" + max + "/" + a);
+	}
+	
+	function quadratic(min, max, a){
+		min = $("#min").val();
+		max = $("#max").val();
+		a = $("#a").val();
+		write("/graph/quadratic/" + min + "/" + max + "/" + a);
+	}
+
+	function linear_quadratic(min, max, a){
+		min = $("#min").val();
+		max = $("#max").val();
+		a = $("#a").val();
+		write("/graph/liner/quadratic/" + min + "/" + max + "/" + a);
+	}
+
+	$(function(e){
+		$("#apply").click(function(e){
+			t = $("#graph-type").val()
+			if (t == "Linear"){
+				liner();
+			}else if (t =="Quadratic"){
+				quadratic();
+			}else if (t =="Linear_Quadratic"){
+				linear_quadratic();
+			}
+			
+		})
+	});
+</script>
+
+<select id="graph-type">
+@Seq("Linear", "Quadratic", "Linear_Quadratic").map {x=> <option value="@Html(x)">@Html(x)</option> }
+</select>
+<button id="apply">apply</button>
+<br/>
+min:<input id="min" value="-100"/>
+max:<input id="max" value="100"/>
+a:<input id="a" value="1"/>
+
+<div id="graph" style="width:500pt;height:500pt"></div>
+<div id="data"></div>
+}
