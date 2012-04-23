@@ -3,8 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /list                       controllers.Application.list
+GET     /		            controllers.graph.Line.show
 GET     /graph/line		            controllers.graph.Line.show
 GET     /graph/liner/:min/:max/:a           controllers.graph.Line.liner(min:Int, max:Int, a:Int)
 GET     /graph/quadratic/:min/:max/:a           controllers.graph.Line.quadratic(min:Int, max:Int, a:Int)
@@ -12,3 +11,4 @@ GET     /graph/liner/quadratic/:min/:max/:a           controllers.graph.Line.lin
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
