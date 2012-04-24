@@ -9,7 +9,9 @@ object Graph extends Controller{
   val graphType =  Seq(
         		Seq("", "/graph"),
         		Seq("Liner", "/graph/liner"),
-        		Seq("Quadratic", "/graph/quadratic")
+        		Seq("Quadratic", "/graph/quadratic"),
+        		Seq("Sin", "/graph/sin"),
+        		Seq("Cos", "/graph/cos")
         	)
   
   def index = Action{

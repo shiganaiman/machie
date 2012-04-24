@@ -9,6 +9,10 @@ GET     /graph/liner            	controllers.graph.Liner.index
 GET     /graph/liner/:min/:max/:a  controllers.graph.Liner.show(min:Int, max:Int, a:Int)
 GET     /graph/quadratic         	controllers.graph.Quadratic.index
 GET     /graph/quadratic/:min/:max/:a  controllers.graph.Quadratic.show(min:Int, max:Int, a:Int)
+GET     /graph/sin         				controllers.graph.Sin.index
+GET     /graph/sin/:min/:max/:a  		controllers.graph.Sin.show(min:String, max:String, a:String)
+GET     /graph/cos         				controllers.graph.Cos.index
+GET     /graph/cos/:min/:max/:a  		controllers.graph.Cos.show(min:String, max:String, a:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

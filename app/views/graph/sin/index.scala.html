@@ -1,0 +1,28 @@
+@(graphTypes:Seq[Seq[String]], selectType:String)
+@views.html.graph.graph.graph(graphTypes, selectType:String){
+<script type="text/javascript">
+
+	function send(){
+		min = $("#min").val();
+		max = $("#max").val();
+		a = $("#a").val();
+		scala = $("#scala").val();
+		write("/graph/sin/" + min + "/" + max + "/" + a);
+	}
+	
+	$(function(e){
+		send();
+		$("#show").click(function(e){
+			send()
+		});
+	});
+</script>
+<br />
+min:<input id="min" value="-10" />
+max:<input id="max" value="10" />
+a:<input id="a" value="1" />
+<button id="show">show</button>
+<div id="graph" style="width: 500pt; height: 500pt"></div>
+<div id="data"></div>
+
+}
