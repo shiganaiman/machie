@@ -1,0 +1,27 @@
+@(graphTypes:Seq[Seq[String]], selectType:String)
+@views.html.graph.graph.graph(graphTypes, selectType:String){
+<script type="text/javascript">
+
+	function send(){
+		min = $("#min").val();
+		max = $("#max").val();
+		a = $("#a").val();
+		write("/graph/quadratic/" + min + "/" + max + "/" + a);
+	}
+	
+	$(function(e){
+		send();
+		$("#show").click(function(e){
+			send()
+		});
+	});
+</script>
+<br />
+min:<input id="min" value="-100" />
+max:<input id="max" value="100" />
+a:<input id="a" value="1" />
+<button id="show">show</button>
+<div id="graph" style="width: 500pt; height: 500pt"></div>
+<div id="data"></div>
+
+}

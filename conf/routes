@@ -3,11 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /		            controllers.graph.Line.show
-GET     /graph/line		            controllers.graph.Line.show
-GET     /graph/liner/:min/:max/:a           controllers.graph.Line.liner(min:Int, max:Int, a:Int)
-GET     /graph/quadratic/:min/:max/:a           controllers.graph.Line.quadratic(min:Int, max:Int, a:Int)
-GET     /graph/liner/quadratic/:min/:max/:a           controllers.graph.Line.linerAndQuadratic(min:Int, max:Int, a:Int)
+GET     /		            			controllers.graph.Graph.index
+GET     /graph            			controllers.graph.Graph.index
+GET     /graph/liner            	controllers.graph.Liner.index
+GET     /graph/liner/:min/:max/:a  controllers.graph.Liner.show(min:Int, max:Int, a:Int)
+GET     /graph/quadratic         	controllers.graph.Quadratic.index
+GET     /graph/quadratic/:min/:max/:a  controllers.graph.Quadratic.show(min:Int, max:Int, a:Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,53 @@
+@(graphTypes:Seq[Seq[String]], selectType:String)(graph:Html) 
+@main("Grphe Line") {
+<script type="text/javascript">
+$(function(e){
+	$("#graph-type").change(function(e){
+		location.href = $(this).val()
+	})
+})
+function showStatus(data, textStatus){
+	$("#data")
+		.empty()
+		.append(
+				$("<pre'>status:" + textStatus + "</pre><br/>")
+			);
+}
+
+function write(url){
+	$.getJSON(url,
+			function(data, textStatus, XMLHttpRequest) {
+				showStatus(data, textStatus);
+				$("#graph").empty();
+				$.jqplot("graph"
+						,data["data"]
+						,{
+							title:"Liner Equation"
+							,series:[{showMarker:false}]
+							,axes: {
+								xaxis: {
+									label: "X Axis"
+									,pad:0
+								}
+								,yaxis: {
+									label: "y Axis"
+									,pad:0
+								}
+							}
+						}
+				);
+	});
+}
+
+</script>
+<select id="graph-type">
+@graphTypes.map {x=> 
+			@if(selectType eq x(0)){
+				<option selected="selected" value="@Html(x(1))">@Html(x(0))</option>
+			}else{
+				<option value="@Html(x(1))">@Html(x(0))</option>
+			}
+		}
+</select>
+@graph
+}
