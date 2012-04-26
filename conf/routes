@@ -6,7 +6,7 @@
 GET     /		            			controllers.graph.Graph.index
 GET     /graph            			controllers.graph.Graph.index
 GET     /graph/liner            	controllers.graph.Liner.index
-GET     /graph/liner/:min/:max/:a  controllers.graph.Liner.show(min:Int, max:Int, a:Int)
+#GET     /graph/liner/:min/:max/:a  controllers.graph.Liner.show(min:Int, max:Int, a:Int)
 GET     /graph/quadratic         	controllers.graph.Quadratic.index
 GET     /graph/quadratic/:min/:max/:a  controllers.graph.Quadratic.show(min:Int, max:Int, a:Int)
 GET     /graph/sin         				controllers.graph.Sin.index
