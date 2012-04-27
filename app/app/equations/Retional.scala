@@ -29,4 +29,3 @@ class Retional(n: Int, d: Int) {
 
 }
 
-implicit def intToRational(x: Int)= new Retional(x)
